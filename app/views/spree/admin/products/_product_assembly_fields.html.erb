@@ -1,18 +1,25 @@
-<p>
-  <%= f.label :can_be_part, t("can_be_part")%><br />
-  <%= f.check_box(:can_be_part) %>
-</p>
-<p>
-  <%= f.label :individual_sale, t("individual_sale")%><br />
-  <%= f.check_box(:individual_sale) %>
-</p>
+<div class="left four columns">
+  <label><%= t("Bundle Settings") %></label>
+  <div class="twelve columns">
+    <%= f.check_box(:can_be_part, style: 'width: 10%') %>
+    <%= f.label :can_be_part, t("can_be_part")%>
+  </div>
+  <div class="twelve columns">
+    <%= f.check_box(:individual_sale, style: 'width: 10%') %>
+    <%= f.label :individual_sale, t("individual_sale")%>
+  </div>
+  <div class="twelve columns">
+    <%= f.check_box(:use_parts_for_assy_weight, style: 'width: 10%') %>
+    <%= f.label :use_parts_for_assy_weight, t("Use parts to calculate bundle weight") %>
+  </div>
 
-<% if @product.assembly? %>
-  <% content_for :head do %>
-    <script type="text/javascript">
-      jQuery(document).ready(function(){
-        $("input[id='product_on_hand']").disable().parent().hide();
-      });
-    </script>
+  <% if @product.assembly? %>
+    <% content_for :head do %>
+      <script type="text/javascript">
+        jQuery(document).ready(function(){
+          $("input[id='product_on_hand']").disable().parent().hide();
+        });
+      </script>
+    <% end %>
   <% end %>
-<% end %>
+</div>

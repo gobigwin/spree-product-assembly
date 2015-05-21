@@ -14,7 +14,7 @@ Spree::Product.class_eval do
     not_deleted.individual_saled.available(nil, args.first)
   }
 
-  attr_accessible :can_be_part, :individual_sale
+  attr_accessible :can_be_part, :individual_sale, :use_parts_for_assy_weight
 
   # returns the number of inventory units "on_hand" for this product
   def on_hand_with_assembly(reload = false)
