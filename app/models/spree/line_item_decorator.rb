@@ -6,7 +6,7 @@ Spree::LineItem.class_eval do
   def sufficient_stock?
     return true if Spree::Config[:allow_backorders]
     if product.assembly?
-      !assembly_variants.map(&:variant).select{|part| part.on_hand < product.count_of(part.product)}.any?
+      !assembly_variants.map(&:variant).select{|part| part.on_hand < quantity * product.count_of(part.product)}.any?
     else
       if new_record? || !order.completed?
         variant.on_hand >= quantity
