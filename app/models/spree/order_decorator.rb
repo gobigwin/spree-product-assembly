@@ -30,7 +30,10 @@ Spree::Order.class_eval do
   end
 
   def matching_assembly_parts?(item, assembly_variants)
-    !assembly_variants.present? or item.assembly_variants.map(&:variant_id) == assembly_variants.map{|v| v.to_i}
+    return true if !item.variant.product.assembly?
+    return true if item.assembly_variants.empty? && assembly_variants.empty?
+
+    !assembly_variants.present? or item.assembly_variants.map(&:variant_id).sort == assembly_variants.map{|v| v.to_i}.sort
   end
 
 end
