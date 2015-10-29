@@ -6,7 +6,7 @@
       <% if Spree::Config[:show_zero_stock_products] || part.has_stock? %>
         <li id="product_<%= part.id %>" class="columns four <%= cycle("alpha", "secondary", "", "omega secondary") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
           <div class="product-image">
-            <%= link_to small_image(part, :itemprop => "name"), part %>
+            <%= link_to product_image(part, :itemprop => "name"), part %>
           </div>
           <%= link_to truncate(part.name, :length => 50), part, :class => 'info', :itemprop => "name", :title => part.name %>
           <% if part.has_variants? %>
